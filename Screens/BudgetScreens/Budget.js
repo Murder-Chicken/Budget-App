@@ -62,7 +62,7 @@ export default function BudgetScreen({navigation}){
     useEffect(() => {
         firebase.auth().currentUser.getIdToken().then(function(idToken) {
             console.log("idToken POST started");
-            fetch('http://192.168.0.136:8080/send_uid', {
+            fetch('http://ip_address_here/send_uid', {
                 method: 'POST',
                 headers: {
                   'Content-type': 'application/json'
@@ -78,7 +78,7 @@ export default function BudgetScreen({navigation}){
             (docSnapshot) => {
                 if (!docSnapshot.exists || docSnapshot.data().date != moment().format('YYYY-MM-DD')) {
                     console.log("transaction pull started: ")
-                    fetch('http://192.168.0.136:8080/transactions')
+                    fetch('http://ip_address_here/transactions')
                     .then((response) => response.json())
                     .then((json) => setData(json.transactions))
                     .catch((error) => console.log(error))
